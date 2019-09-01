@@ -1,0 +1,19 @@
+{
+  "name": "lop-language",
+  "version": "1.0.0",
+  "description": "An HTML interpreter for making websites.",
+  "main": "index.js",
+  "bin": {
+    "lop": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lop-Language/lop"
+  },
+  "keywords": [
+    "programming", "language", "interpreter", "html"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
