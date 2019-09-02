@@ -133,11 +133,13 @@ exports.parse = (code) => {
 
 
             for(var i = linei - 1; i < lines.length; i++) {
-                if(!lines[i].includes('<')) {
+                if(!lines[i].includes('<<')) {
                     if(lines[i].includes('code-' + language + '>')) {
-                        codeblock += lines[i].replace('code-' + language + '>', '')
+                        codeblock += lines[i]
+                        codeitems.push(lines[i])
                     } else {
-                        codeblock += '\n' + lines[i].replace('code-' + language + '>', '')
+                        codeblock += '\n' + lines[i]
+                        codeitems.push(lines[i])
                     }
                 } else
                     break
@@ -145,8 +147,11 @@ exports.parse = (code) => {
 
             
 
-            codeblock += '\n' + lines[i].substring(0, lines[i].indexOf('<')).replace('code-' + language + '>', '') + '</code></pre>'
+            codeblock += '\n' + lines[i].substring(0, lines[i].indexOf('<<')).replace('code-' + language + '>', '') + '</code></pre>'
             documentCode += '\n' + codeblock
+            codeitems.forEach((item) => {
+                lines[lines.indexOf(item)] = ''
+            }) 
         } 
 
         else if(line[0] == 't' && line[1] == 'e' && line[2] == 'x' && line[3] == 't' && line[4] == '>') {
@@ -155,7 +160,7 @@ exports.parse = (code) => {
 
             for(var i = linei - 1; i < lines.length; i++) {
                 
-                if(!lines[i].includes('<')) {
+                if(!lines[i].includes('<<')) {
                     if(lines[i].includes('text>')) {
                         codeblock += lines[i].replace('text>', '')
                     } else {
@@ -166,7 +171,7 @@ exports.parse = (code) => {
 
                 
             }
-            codeblock +=  lines[i].substring(0, lines[i].indexOf('<')).replace('text>', '') + '</p>'
+            codeblock +=  lines[i].substring(0, lines[i].indexOf('<<')).replace('text>', '') + '</p>'
             documentCode += '\n' + codeblock
         } 
 
@@ -176,7 +181,7 @@ exports.parse = (code) => {
 
             for(var i = linei - 1; i < lines.length; i++) {
                 
-                if(!lines[i].includes('<')) {
+                if(!lines[i].includes('<<')) {
                     if(lines[i].includes('text>')) {
                         codeblock += lines[i].replace('text>', '')
                     } else {
@@ -187,7 +192,7 @@ exports.parse = (code) => {
 
                 
             }
-            codeblock +=  lines[i].substring(0, lines[i].indexOf('<')).replace('%text>', '') + '</span>'
+            codeblock +=  lines[i].substring(0, lines[i].indexOf('<<')).replace('%text>', '') + '</span>'
             documentCode += codeblock.replace('%', '')
         } 
 
@@ -195,7 +200,7 @@ exports.parse = (code) => {
             var codeblock = '<style>'
 
             for(var i = linei - 1; i < lines.length; i++) {
-                if(!lines[i].includes('<')) {
+                if(!lines[i].includes('<<')) {
                     if(lines[i].includes('css>')) {
                         codeblock += lines[i].replace('css>', '')
                     } else {
@@ -204,7 +209,7 @@ exports.parse = (code) => {
                 } else
                     break
             }
-            codeblock += '\n' + lines[i].substring(0, lines[i].indexOf('<')).replace('css>') + '</style>'
+            codeblock += '\n' + lines[i].substring(0, lines[i].indexOf('<<')).replace('css>') + '</style>'
             documentCode += '\n' + codeblock
         } 
     })

@@ -1,0 +1,23 @@
+code-js>function main() {
+    console.log(1 < 1)
+}
+
+main()
+<<
+
+text>
+Lop now ignores lop code within a code block!
+<<
+
+css>
+p {
+    color: #fff
+}
+html {
+    background: #333
+}
+<<
+
+code-none>
+
+<<

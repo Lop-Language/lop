@@ -1,6 +1,6 @@
 {
   "name": "lop-language",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "An HTML interpreter for making websites.",
   "main": "index.js",
   "bin": {
