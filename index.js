@@ -1,15 +1,40 @@
-#!/usr/bin/env node
-var args = process.argv;
-var fs = require('fs'), path = require('path')
+var fs = require('fs')
 
-if(args.length >= 3) {
-    var filename = args[2]
-    if(filename.split('.').pop() == 'lop') {
-        var code = fs.readFileSync(path.join(path.join(args[1], '../'), filename))
-        fs.writeFileSync(path.join(path.join(args[1], '../'), filename.replace('.lop', '.html')), require('./parser/parser.js').parse(code))
-    } else {
-        console.log('Cannot parse files that arent .lop files!')
-    }
-} else {
-    console.log('No arguments found! Please use the format: lop [filename]!')
+/**
+ * Reads a file from the path and returns markdown code.
+ * @param { String } file
+ */
+function toMarkdown(file) {
+    return require('./mdparser/parser.js').parse(fs.readFileSync(file))
+}
+
+/**
+ * Parses the code and returns interpreted markdown code.
+ * @param { String } code
+ */
+function toMarkdownCode(code) {
+    return require('./mdparser/parser.js').parse(code)
+}
+
+/**
+ * Reads a file from the path and returns html code.
+ * @param { String } file
+ */
+function toHtml(file) {
+    return require('./htmlparser/parser.js').parse(fs.readFileSync(file))
+}
+
+/**
+ * Parses the code and returns interpreted html code.
+ * @param { String }code
+ */
+function toHtmlCode(code) {
+    return require('./htmlparser/parser.js').parse(code)
+}
+
+module.exports = {
+    toMarkdown: toMarkdown,
+    toMarkdownCode: toMarkdownCode,
+    toHtml: toHtml,
+    toHtmlCode: toHtmlCode
 }

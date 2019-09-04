@@ -1,23 +1,11 @@
-code-js>function main() {
-    console.log(1 < 1)
-}
-
-main()
+text>text<<
+link-Hello, World!>https://google.com
+code-javascript>
+console.log('Hello, World!')
 <<
-
+code-java>
+System.out.println("Hello, World!")
+<<
 text>
-Lop now ignores lop code within a code block!
-<<
-
-css>
-p {
-    color: #fff
-}
-html {
-    background: #333
-}
-<<
-
-code-none>
-
+Hello, World!
 <<

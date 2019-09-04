@@ -19,7 +19,33 @@ npm i -g lop-language
 ```
 lop [filename].lop
 ```
-The lop command creates an HTML file with the same name in the same folder that 
+translates the lop file into HTML.
+```
+lop [html/markdown/md]
+```
+translates a lop file into markdown/HTML.
+
+Want a language added? open an issue on the [github](https://github.com/Lop-Language/lop)!
+
+### API Usage
+You can parse lop files using the api as of 1.0.4!
+```javascript
+var lop = require('lop-language')
+
+var html1 = lop.toHtml('path/to/file.lop')
+var html2 = lop.tohTMLCode(`
+text>
+Hello, World!
+<<
+`)
+
+var markdown1 = lop.toMarkdown('path/to/file.lop')
+var markdown2 = lop.toMarkdownCode(`
+text>
+Hello, World!
+<<
+`)
+```
 
 ## Basic Syntax
 ```
